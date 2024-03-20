@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/basketball/static/css/main.645aaf60.css",
-    "main.js": "/basketball/static/js/main.37406fdd.js",
+    "main.css": "/basketball/static/css/main.2a037334.css",
+    "main.js": "/basketball/static/js/main.0b629fcf.js",
     "index.html": "/basketball/index.html",
-    "main.645aaf60.css.map": "/basketball/static/css/main.645aaf60.css.map",
-    "main.37406fdd.js.map": "/basketball/static/js/main.37406fdd.js.map"
+    "main.2a037334.css.map": "/basketball/static/css/main.2a037334.css.map",
+    "main.0b629fcf.js.map": "/basketball/static/js/main.0b629fcf.js.map"
   },
   "entrypoints": [
-    "static/css/main.645aaf60.css",
-    "static/js/main.37406fdd.js"
+    "static/css/main.2a037334.css",
+    "static/js/main.0b629fcf.js"
   ]
 }
