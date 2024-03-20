@@ -1,0 +1,42 @@
+@use "../global.scss" as g;
+
+table {
+    width: 100%;
+    color: black;
+    user-select: none;
+    border: 1px solid gray;
+}
+
+th {
+    padding: 8px;
+}
+
+// td {
+//     padding-left: 8px;
+//     padding-right: 8px;
+//     padding-top: 12px;
+//     padding-bottom: 12px;
+// }
+
+tr {
+    border-bottom: 1px solid gray;
+    height: g.$table-row-height;
+}
+
+tr:nth-child(even) {
+    background-color: #b5c7b9;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+thead>tr {
+    background-color: g.$color-primary!important;
+    color: white;
+}
+
+// table>tbody>tr:hover {
+//     background-color: g.$color-secondary!important;
+//     color: white;
+// }

@@ -1,10 +1,13 @@
-$color-primary: orange;
-$color-secondary: rgb(198 198 198);
+$color-primary: #2a5348 ;
+$color-secondary: #405b53;
+$color-error-primary: rgb(207, 54, 54) ;
+$color-error-secondary: rgb(221, 105, 105) ;
 $color-tertiary: rgb(184, 154, 100);
 $color-link: #b3b3ff;
 $color-link-hover: #8484d1;
 $width-timeline-point: 11px;
 $height-timeline-point: 11px;
+$table-row-height: 40px;
 
 
 .timeline-point {

@@ -1,0 +1,104 @@
+@use "../styles/global.scss" as g;
+
+.quarter {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.countdown-timer {
+    position: relative;
+    font-size: 70px;
+    width: 100px;
+}
+
+.play-button {
+    height: 40px;
+    width: 40px;
+    color: g.$color-primary;
+    bottom: 20px;
+    position: relative;
+
+    &:hover {
+        color: g.$color-secondary;
+    }
+
+    &.hovered {
+        color: g.$color-secondary;
+    }
+}
+
+.td-with-actions {
+    position: relative;
+    overflow: hidden;
+}
+
+.pullout-container {
+    height: g.$table-row-height;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.pullout-action-right-panel {
+    height: 43px;
+    width: 50px;
+    position: absolute;
+    left: 67px;
+    transition: left 150ms ease-in-out;
+
+    &.active {
+        left: 7px;
+    }
+}
+
+.pullout-action-left-panel {
+    height: 43px;
+    width: 50px;
+    position: absolute;
+    left: -50px;
+    transition: left 150ms ease-in-out;
+
+    &.active {
+        left: 9px;
+    }
+}
+
+.pullout-button {
+    width: 100%;
+    opacity: .8;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.multi-state-width {
+    width: 130px;
+}
+
+.score-box-width {
+    width: 130px;
+}
+
+.start-button {
+    padding: 12px 12px 12px 12px;
+    background-color: g.$color-primary;
+    color: white;
+
+    &:hover {
+        background-color: g.$color-secondary;
+    }
+}
+
+.registration-input {
+
+    &:focus {
+        border-color: g.$color-primary;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px g.$color-secondary;
+    }
+}
+
+.error-input {
+    border-color: g.$color-error-primary!important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px g.$color-error-secondary!important;
+}

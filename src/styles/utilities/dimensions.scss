@@ -22,3 +22,10 @@
 .w-90 {
     width: 90%;
 }
+
+.content-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
