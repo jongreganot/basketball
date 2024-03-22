@@ -1,0 +1,11 @@
+@use "../global.scss" as g;
+
+.primary-shadow {
+    border-color: g.$color-primary;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 1px 1px 6px 1px g.$color-shadow-primary; // 0 1px 1px rgba(0, 0, 0, 0.075) inset, 1px 1px 15px 1px #92d096
+}
+
+.red-shadow {
+    border-color: rgb(99, 39, 39);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(49, 18, 18); // 0 1px 1px rgba(0, 0, 0, 0.075) inset, 1px 1px 15px 1px #92d096
+}

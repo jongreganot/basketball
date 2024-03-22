@@ -1,0 +1,17 @@
+export const StatTypes = {
+    Pts: 0,
+    Rebs: 1,
+    Ast: 2,
+    Stl: 3,
+    Blk: 4,
+    FgMake: 5,
+    FgAttempt: 6,
+    FtMake: 7,
+    FtAttempt: 8,
+    ThreePtMake: 9,
+    ThreePtAttempt: 10,
+    TotalFgMake: 5,
+    TotalFgAttempt: 6,
+    Tov: 12,
+    Fls: 13,
+}

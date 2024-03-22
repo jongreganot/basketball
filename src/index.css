@@ -1,7 +1,26 @@
 body {
   margin: 0;
-  font-family: "Manrope", sans-serif;
+  font-family: "Michroma", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  overflow: hidden;
+  background-image: url("./images/main-background.jpg");
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: white;
+}
+
+.mask {
+  background-color: black;
+  opacity: .7;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }

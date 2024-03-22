@@ -4,7 +4,7 @@ table {
     width: 100%;
     color: black;
     user-select: none;
-    border: 1px solid gray;
+    // border: 1px solid gray;
 }
 
 th {
@@ -18,8 +18,19 @@ th {
 //     padding-bottom: 12px;
 // }
 
+
+td:hover {
+    background-color: rgb(245, 245, 245);
+    color: black;
+}
+
+td.no-hover:hover {
+    background-color: transparent;
+    color: white;
+}
+
 tr {
-    border-bottom: 1px solid gray;
+    // border-bottom: 1px solid gray;
     height: g.$table-row-height;
 }
 
@@ -36,7 +47,7 @@ thead>tr {
     color: white;
 }
 
-// table>tbody>tr:hover {
-//     background-color: g.$color-secondary!important;
-//     color: white;
-// }
+table>tbody>tr:hover {
+    background-color: g.$color-secondary!important;
+    color: white;
+}

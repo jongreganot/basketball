@@ -1,5 +1,8 @@
-$color-primary: #2a5348 ;
+$color-primary: #294B29 ;
 $color-secondary: #405b53;
+$color-button-primary: white;
+$color-button-hover: #1a2e1a;
+$color-shadow-primary: #92d096;
 $color-error-primary: rgb(207, 54, 54) ;
 $color-error-secondary: rgb(221, 105, 105) ;
 $color-tertiary: rgb(184, 154, 100);
@@ -8,20 +11,3 @@ $color-link-hover: #8484d1;
 $width-timeline-point: 11px;
 $height-timeline-point: 11px;
 $table-row-height: 40px;
-
-
-.timeline-point {
-    height: $height-timeline-point;
-    width: $width-timeline-point;
-    border-radius: 50%;
-    border: 1px solid $color-primary;
-}
-
-.timeline-line-container {
-    width: $width-timeline-point;
-}
-
-.timeline-line {
-    border-right: 1px solid $color-primary;
-    position: relative;
-}

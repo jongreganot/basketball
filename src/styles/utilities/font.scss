@@ -19,8 +19,7 @@
 }
 
 .fs-title {
-    font-size: 90px;
-    margin-bottom: -30px !important;
+    font-size: 110px;
 }
 
 .fs-title-2 {
@@ -36,19 +35,19 @@
 }
 
 .fs-large {
-    font-size: 20px;
+    font-size: 12px;
 }
 
 .fs-normal {
-    font-size: 16px;
+    font-size: 10px;
 }
 
 .fs-small {
-    font-size: 14px;
+    font-size: 9px;
 }
 
 .fs-extra-small {
-    font-size: 12px;
+    font-size: 8px;
 }
 
 @media (max-width: 430px) {
@@ -91,4 +90,10 @@
     .fs-extra-small {
         font-size: 10px;
     }
+}
+
+.manrope-font {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
