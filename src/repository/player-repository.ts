@@ -15,6 +15,9 @@ export const setDefaultProperties = (player) => {
     player.threePtMake = 0;
     player.threePtAttempt = 0;
     player.threePtMakeAttemptPercent = 0;
+    player.totalFgMake = 0;
+    player.totalFgAttempt = 0;
+    player.totalFgMakeAttemptPercent = 0;
     player.tov = 0;
     player.fls = 0;
     

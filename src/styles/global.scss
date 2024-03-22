@@ -11,3 +11,13 @@ $color-link-hover: #8484d1;
 $width-timeline-point: 11px;
 $height-timeline-point: 11px;
 $table-row-height: 40px;
+$standard-control-bg-color: #0b0b0b;
+
+.standard-control {
+    background-color: $standard-control-bg-color;
+    border: 3px solid #232222!important;
+}
+
+.standard-bottom-border {
+    border-bottom: 6px solid #232222!important;
+}

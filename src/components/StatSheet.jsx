@@ -73,7 +73,7 @@ const StatSheet = (props) => {
                                     <th scope="row"><p className="mb-0 text-center fs-normal fw-bold">{player.number}</p></th>
                                     <th><p className="mb-0 fs-normal">{player.name}</p></th>
                                     <td className="td-with-actions cursor-pointer" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
-                                        <div className="content-center pe-none">
+                                        <div className="content-center">
                                             <p className="mb-0 text-center fs-normal">{player.pts}</p>
                                             <div className="pullout-action-right-panel">
                                                     {/* <PullOutButton handleClick={(e) => props.updateStat(e, 2, player.id, PullOutSides.Right, StatTypes.Pts)}
@@ -121,7 +121,7 @@ const StatSheet = (props) => {
 
                                     <td>
                                         <div className="d-flex flex-row">
-                                            <div className="content-center col-6 pullout-container pe-auto" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
+                                            <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-normal pe-none">{player.ftMake}/{player.ftAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FtMake)}
@@ -144,7 +144,7 @@ const StatSheet = (props) => {
                                     </td>
                                     <td>
                                         <div className="d-flex flex-row">
-                                            <div className="content-center col-6 pullout-container pe-auto" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
+                                            <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-normal pe-none">{player.fgMake}/{player.fgAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FgMake)}
@@ -167,7 +167,7 @@ const StatSheet = (props) => {
                                     </td>
                                     <td>
                                         <div className="d-flex flex-row">
-                                            <div className="content-center col-6 pullout-container pe-auto" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
+                                            <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-normal pe-none">{player.threePtMake}/{player.threePtAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.ThreePtMake)}

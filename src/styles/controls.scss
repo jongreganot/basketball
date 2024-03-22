@@ -3,11 +3,9 @@
 .controls {
     height: 100px;
     width: 100%;
-    background-color: #0b0b0b;
-    border-top: 3px solid #232222;
 }
 
-.play-button-container {
+.control-button-container {
     padding-left: 8px;
     padding-right: 5px;
     border-radius: 5px;
@@ -24,9 +22,14 @@
     }
 }
 
-.play-button {
+.control-button {
     height: 60px;
     width: 60px;
     color: g.$color-button-primary;
     position: relative;
+}
+
+.up-icon {
+    height: 40px;
+    width: 40px;
 }

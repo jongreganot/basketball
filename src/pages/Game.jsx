@@ -6,11 +6,8 @@ import StatSheet from "../components/StatSheet.jsx";
 import { animateEnter, animateEnterNext } from "../behaviors/animation.js";
 import JerseyNumberInput from "../components/JerseyNumberInput.jsx";
 import LastNameInput from "../components/LastNameInput.jsx";
-import TimeKeeper from "../components/TimeKeeper.jsx";
 import Scoreboard from "../components/Scoreboard.jsx";
 import { disableDefaultSpaceBarBehavior } from "../behaviors/interactions.js";
-import trophy from "../images/trophy.jpg";
-import ShotClock from "../components/ShotClock.jsx";
 import Controls from "../components/Controls.jsx";
 import { registerPlayBtnEventListener } from "../behaviors/play-button.js";
 import sound from "../audio/buzzer.mp3";
@@ -29,7 +26,7 @@ class Game extends React.Component {
         gameStarted: false,
         timerPlay: false,
         quarter: 1,
-        minutes: 10,
+        minutes: this.minutesPerQuarter,
         seconds: 0,
         milliseconds: 0,
         shotclock: 24
@@ -205,15 +202,19 @@ class Game extends React.Component {
     }
 
     resetShotclockTimer = () => {
-        this.setState({
-            shotclock: this.shotclockLimit
-        })
+        if (this.state.gameStarted) {
+            this.setState({
+                shotclock: this.shotclockLimit
+            })
+        }
     }
 
     setShotClock14 = () => {
-        this.setState({
-            shotclock: this.shotclock14
-        })
+        if (this.state.gameStarted) {
+            this.setState({
+                shotclock: this.shotclock14
+            })
+        }
     }
 
     resetTimer = () => {
@@ -232,27 +233,40 @@ class Game extends React.Component {
             <div className="d-flex flex-column justify-content-between align-items-center position-fixed h-100">
                 <div className="overflow-y-scroll">
                     <div className={`d-flex flex-column justify-content-center align-items-center ${this.state.gameStarted ? "d-block": "d-none"}`}>
-                        {/* <TimeKeeper gameStarted={this.state.gameStarted}
-                                    stopTimer={this.stopTimer} /> */}
-                        <div className="d-flex flex-row align-items-center justify-content-center slide-right-game-start user-select-none">
+                        {/* <div className="d-flex flex-row align-items-center justify-content-center slide-right-game-start user-select-none">
                             <div className="cursor-pointer" onDoubleClick={this.changeQuarter}>
                                 <p className="mb-0 quarter me-4">{`${this.state.quarter}Q`}</p>
                             </div>
                             <p className={`mb-0 countdown-timer ${this.state.minutes === 0 ? "d-none": ""}`}>{this.state.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:</p>
                             <p className="mb-0 countdown-timer">{this.state.seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
                             <p className={`mb-0 countdown-timer  ${this.state.minutes === 0 ? "": "d-none"}`}>.{this.state.milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="temporary-margin"></div>
-                    <div className={`flex-row justify-content-around align-items-center scoreboard-line ${this.state.gameStarted ? "d-flex": "d-none"}`}>
+                    <div className={`flex-row justify-content-around align-items-end scoreboard-line ${this.state.gameStarted ? "d-flex": "d-none"}`}>
                         <Scoreboard getTeamScore={() => this.getTeamScore(1)}
                                     gameStarted={this.state.gameStarted}
                         />
-                        <p className={`mb-0 fs-title fw-bold shot-clock-text slide-right-game-start ${this.state.shotclock < 8 ? "color-red": ""} ${this.shouldShotClockTurnOff() ? "d-none": "d-block"}`}>{this.state.shotclock}</p>
+                        <div style={{width: "310px"}} className="slide-right-game-start content-stack-center mt-5 standard-control">
+                            <div className="d-flex flex-row align-items-center justify-content-center slide-right-game-start standard-bottom-border user-select-none">
+                                {/* <div className="cursor-pointer" onDoubleClick={this.changeQuarter}>
+                                    <p className="mb-0 quarter me-4">{`${this.state.quarter}Q`}</p>
+                                </div> */}
+                                <p className={`mb-0 countdown-timer ${this.state.minutes === 0 ? "d-none": ""}`}>{this.state.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:</p>
+                                <p className="mb-0 countdown-timer">{this.state.seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
+                                <p className={`mb-0 countdown-timer  ${this.state.minutes === 0 ? "": "d-none"}`}>.{this.state.milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
+                            </div>
+                            <p className={`mb-0 fs-title fw-bold shot-clock-text slide-right-game-start ${this.state.shotclock < 8 ? "color-red": ""} ${this.shouldShotClockTurnOff() ? "color-standard": ""}`}>{this.state.shotclock}</p>
+                        </div>
                         <Scoreboard getTeamScore={() => this.getTeamScore(2)}
                                     gameStarted={this.state.gameStarted}
                         />
+                    </div>
+
+                    <div className={`flex-column align-items-center justify-content-center slide-right my-2 ${this.state.gameStarted ? "d-none": "d-flex"}`}>
+                        <p className="mb-0 fs-title-2">ADD PLAYERS</p>
+                        <div className="temporary-margin"></div>
                     </div>
                     <div className="d-flex flex-row justify-content-center gap-3 px-4 mb-4 col-12">
                         <div className="col-6">
@@ -325,6 +339,8 @@ class Game extends React.Component {
                             timerPlay={this.state.timerPlay}
                             resetShotclockTimer={this.resetShotclockTimer}
                             setShotClock14={this.setShotClock14}
+                            quarter={this.state.quarter}
+                            changeQuarter={this.changeQuarter}
                 />
                 
             </div>

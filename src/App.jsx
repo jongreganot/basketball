@@ -6,7 +6,7 @@ import { setDefaultProperties, updateStat } from "./repository/player-repository
 
 class App extends React.Component {
   state = {
-    players: staticData
+    players: []//staticData
   }
 
   updateStat = (statPt, id, statType) => {

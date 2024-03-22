@@ -4,27 +4,27 @@ export const registerPlayBtnEventListener = (toggleTimer, resetShotclockTimer, s
     $(document).on("keyup", (e) => {
         if (e.code === "Space") {
             toggleTimer();
-            removeHover("play-button-container.play");
+            removeHover("control-button-container.play");
         }
         else if (e.code === "KeyR") {
             resetShotclockTimer();
-            removeHover("play-button-container.reset-24");
+            removeHover("control-button-container.reset-24");
         }
         else if (e.code === "KeyY") {
             setShotClock14();
-            removeHover("play-button-container.reset-14");
+            removeHover("control-button-container.reset-14");
         }
     });
 
     $(document).on("keydown", (e) => {
         if (e.code === "Space") {
-            addHover("play-button-container.play");
+            addHover("control-button-container.play");
         }
         else if (e.code === "KeyR") {
-            addHover("play-button-container.reset-24");
+            addHover("control-button-container.reset-24");
         }
         else if (e.code === "KeyY") {
-            addHover("play-button-container.reset-14");
+            addHover("control-button-container.reset-14");
         }
     });
 }
