@@ -5,7 +5,7 @@ import { PullOutSides } from "../constants/pullout-sides.ts";
 import StatSheet from "../components/StatSheet.jsx";
 import { animateEnter, animateEnterNext } from "../behaviors/animation.js";
 import JerseyNumberInput from "../components/JerseyNumberInput.jsx";
-import LastNameInput from "../components/LastNameInput.jsx";
+import NameInput from "../components/NameInput.jsx";
 import Scoreboard from "../components/Scoreboard.jsx";
 import { disableDefaultSpaceBarBehavior } from "../behaviors/interactions.js";
 import Controls from "../components/Controls.jsx";
@@ -232,33 +232,20 @@ class Game extends React.Component {
         return (
             <div className="d-flex flex-column justify-content-between align-items-center position-fixed h-100">
                 <div className="overflow-y-scroll">
-                    <div className={`d-flex flex-column justify-content-center align-items-center ${this.state.gameStarted ? "d-block": "d-none"}`}>
-                        {/* <div className="d-flex flex-row align-items-center justify-content-center slide-right-game-start user-select-none">
-                            <div className="cursor-pointer" onDoubleClick={this.changeQuarter}>
-                                <p className="mb-0 quarter me-4">{`${this.state.quarter}Q`}</p>
-                            </div>
-                            <p className={`mb-0 countdown-timer ${this.state.minutes === 0 ? "d-none": ""}`}>{this.state.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:</p>
-                            <p className="mb-0 countdown-timer">{this.state.seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
-                            <p className={`mb-0 countdown-timer  ${this.state.minutes === 0 ? "": "d-none"}`}>.{this.state.milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
-                        </div> */}
-                    </div>
-
                     <div className="temporary-margin"></div>
-                    <div className={`flex-row justify-content-around align-items-end scoreboard-line ${this.state.gameStarted ? "d-flex": "d-none"}`}>
+                    <div className={`flex-row justify-content-around mt-5 align-items-end scoreboard-line ${this.state.gameStarted ? "d-flex": "d-none"}`}>
                         <Scoreboard getTeamScore={() => this.getTeamScore(1)}
                                     gameStarted={this.state.gameStarted}
                         />
-                        <div style={{width: "310px"}} className="slide-right-game-start content-stack-center mt-5 standard-control">
+                        {/* <div style={{width: "310px"}} className="slide-right-game-start content-stack-center mt-5 standard-control">
                             <div className="d-flex flex-row align-items-center justify-content-center slide-right-game-start standard-bottom-border user-select-none">
-                                {/* <div className="cursor-pointer" onDoubleClick={this.changeQuarter}>
-                                    <p className="mb-0 quarter me-4">{`${this.state.quarter}Q`}</p>
-                                </div> */}
+                                
                                 <p className={`mb-0 countdown-timer ${this.state.minutes === 0 ? "d-none": ""}`}>{this.state.minutes.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}:</p>
                                 <p className="mb-0 countdown-timer">{this.state.seconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
                                 <p className={`mb-0 countdown-timer  ${this.state.minutes === 0 ? "": "d-none"}`}>.{this.state.milliseconds.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping: false})}</p>
                             </div>
                             <p className={`mb-0 fs-title fw-bold shot-clock-text slide-right-game-start ${this.state.shotclock < 8 ? "color-red": ""} ${this.shouldShotClockTurnOff() ? "color-standard": ""}`}>{this.state.shotclock}</p>
-                        </div>
+                        </div> */}
                         <Scoreboard getTeamScore={() => this.getTeamScore(2)}
                                     gameStarted={this.state.gameStarted}
                         />
@@ -282,7 +269,7 @@ class Game extends React.Component {
                                         />
                                     </div>
                                     <div className="col-3">
-                                        <LastNameInput team={1}
+                                        <NameInput team={1}
                                                         submit={this.submit}
                                         />
                                     </div>
@@ -293,6 +280,7 @@ class Game extends React.Component {
                                             toggleActions={this.toggleActions}
                                             updateStat={this.updateStat}
                                             closePanels={this.closePanels}
+                                            toggleActivePlayer={this.props.toggleActivePlayer}
                                             />
                             </div>
                         </div>
@@ -311,7 +299,7 @@ class Game extends React.Component {
                                         />
                                     </div>
                                     <div className="col-3">
-                                        <LastNameInput team={2}
+                                        <NameInput team={2}
                                                         submit={this.submit}
                                         />
                                     </div>
@@ -322,6 +310,7 @@ class Game extends React.Component {
                                             toggleActions={this.toggleActions}
                                             updateStat={this.updateStat}
                                             closePanels={this.closePanels}
+                                            toggleActivePlayer={this.props.toggleActivePlayer}
                                             />
                             </div>
                         </div>
@@ -334,14 +323,14 @@ class Game extends React.Component {
                     </div>
                 </div>
                 
-                <Controls gameStarted={this.state.gameStarted}
+                {/* <Controls gameStarted={this.state.gameStarted}
                             toggleTimer={this.toggleTimer}
                             timerPlay={this.state.timerPlay}
                             resetShotclockTimer={this.resetShotclockTimer}
                             setShotClock14={this.setShotClock14}
                             quarter={this.state.quarter}
                             changeQuarter={this.changeQuarter}
-                />
+                /> */}
                 
             </div>
         )

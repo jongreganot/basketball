@@ -1,4 +1,5 @@
 import { StatTypes } from "../constants/stat-type.ts";
+import { defaultToZero } from "./helpers/defaults.ts";
 
 export const setDefaultProperties = (player) => {
     player.pts = 0;
@@ -57,63 +58,61 @@ export const updateStat = (player, statPt, statType) => {
             player.blk = 0;
           break;
         case StatTypes.FgMake:
+          if (statPt < 0 && player.pts < 2) break;
+          player.pts = (statPt < 0) ?  player.pts - 2: player.pts + 2;
           player.fgMake += statPt;
-          player.fgAttempt++;
-          player.pts += 2;
-          player.totalFgMake++;
-          player.totalFgAttempt++;
+          player.fgAttempt += statPt;
+          player.totalFgMake += statPt;
+          player.totalFgAttempt += statPt;
           player.fgMakeAttemptPercent = computeFgMakeAttemptPercentage(player);
           player.totalFgMakeAttemptPercent = computeTotalFgMakeAttemptPercentage(player);
           break;
         case StatTypes.FgAttempt:
-          player.fgAttempt++;
-          player.totalFgAttempt++;
+          player.fgAttempt += statPt;
+          player.totalFgAttempt += statPt;
           player.totalFgMakeAttemptPercent = computeTotalFgMakeAttemptPercentage(player);
           player.fgMakeAttemptPercent = computeFgMakeAttemptPercentage(player);
           break;
         case StatTypes.FtMake:
           player.ftMake += statPt;
-          player.ftAttempt++;
-          player.pts++;
+          player.ftAttempt += statPt;
+          player.pts += statPt;
+
           player.ftMakeAttemptPercent = computeFtMakeAttemptPercentage(player);
           break;
         case StatTypes.FtAttempt:
-          player.ftAttempt++;
+          player.ftAttempt += statPt;
+          
           player.ftMakeAttemptPercent = computeFtMakeAttemptPercentage(player);
           break;
         case StatTypes.ThreePtMake:
+          player.pts = (statPt < 0) ? player.pts - 3: player.pts + 3;
           player.threePtMake += statPt;
-          player.threePtAttempt++;
-          player.pts += 3;
-          player.totalFgMake++;
-          player.totalFgAttempt++;
+          player.threePtAttempt += statPt;
+          player.totalFgMake += statPt;
+          player.totalFgAttempt += statPt;
+
           player.threePtMakeAttemptPercent = computeThreePtMakeAttemptPercentage(player);
           player.totalFgMakeAttemptPercent = computeTotalFgMakeAttemptPercentage(player);
           break;
         case StatTypes.ThreePtAttempt:
           player.threePtAttempt += statPt;
-          player.totalFgAttempt++;
+          player.totalFgAttempt += statPt;
           player.totalFgMakeAttemptPercent = computeTotalFgMakeAttemptPercentage(player);
           player.threePtMakeAttemptPercent = computeThreePtMakeAttemptPercentage(player);
           break;
         case StatTypes.Tov:
           player.tov += statPt;
-      
-          if (player.tov < 0)
-            player.tov = 0;
           break;
         case StatTypes.Fls:
           player.fls += statPt;
-      
-          if (player.fls < 0)
-            player.fls = 0;
           break;
   
         default:
           break;
       }
-
-    return player;
+      
+    defaultToZero(player);
 }
 
 const computeFgMakeAttemptPercentage = (player) => player.fgMake / player.fgAttempt * 100;

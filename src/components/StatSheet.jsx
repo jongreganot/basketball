@@ -18,7 +18,7 @@ const StatSheet = (props) => {
                         <th scope="col"><p className="mb-0 text-center fs-normal fw-bold">STL</p></th>
                         <th scope="col"><p className="mb-0 text-center fs-normal fw-bold">BLK</p></th>
                         <th scope="col" className="multi-state-width">
-                            <p className="mb-0 text-center fs-normal fw-bold">Free Throw</p>
+                            <p className="mb-0 text-center fs-normal fw-bold">FT</p>
                             <div className="d-flex flex-row mt-1">
                                 <div className="content-center col-6">
                                     <p className="mb-0 fs-normal fw-300">M/A</p>
@@ -67,14 +67,14 @@ const StatSheet = (props) => {
                 </thead>
                 <tbody>
                     {
-                        props.players.filter(player => player.team === props.team).map((player, i) => {
+                        props.players.sort((a, b) => b.isActive - a.isActive).filter(player => player.team === props.team).map((player, i) => {
                             return (
-                                <tr key={`row-${i}`} className="slide-right">
-                                    <th scope="row"><p className="mb-0 text-center fs-normal fw-bold">{player.number}</p></th>
-                                    <th><p className="mb-0 fs-normal">{player.name}</p></th>
+                                <tr key={`row-${i}`} className={`slide-right ${player.isActive ? "activePlayer": ""} ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"}`}>
+                                    <th scope="row" className={`cursor-pointer ${props.gameStarted ? "pe-auto": "pe-none"}`} onDoubleClick={() => props.toggleActivePlayer(player.id)}><p className="mb-0 text-center fs-small fw-bold">{player.number}</p></th>
+                                    <th className="no-hover"><p className="mb-0 fs-small">{player.name}</p></th>
                                     <td className="td-with-actions cursor-pointer" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                         <div className="content-center">
-                                            <p className="mb-0 text-center fs-normal">{player.pts}</p>
+                                            <p className="mb-0 text-center fs-small">{player.pts}</p>
                                             <div className="pullout-action-right-panel">
                                                     {/* <PullOutButton handleClick={(e) => props.updateStat(e, 2, player.id, PullOutSides.Right, StatTypes.Pts)}
                                                                     backgroundColor="rgb(171 197 131)"
@@ -122,35 +122,47 @@ const StatSheet = (props) => {
                                     <td>
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
-                                                <p className="mb-0 fs-normal pe-none">{player.ftMake}/{player.ftAttempt}</p>
+                                                <p className="mb-0 fs-small pe-none">{player.ftMake}/{player.ftAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FtMake)}
                                                                     backgroundColor="rgb(171 197 131)"
-                                                                    height="100%"
-                                                                    description="+1" />
+                                                                    height="50%"
+                                                                    description="+Make" />
+                                                    <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FtAttempt)}
+                                                                    backgroundColor="gray"
+                                                                    height="50%"
+                                                                    description="+Miss" />
                                                 </div>
                                             
                                                 <div className="pullout-action-left-panel">
-                                                    <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Left, StatTypes.FtAttempt)}
+                                                    <PullOutButton handleClick={(e) => props.updateStat(e, -1, player.id, PullOutSides.Left, StatTypes.FtMake)}
+                                                                    backgroundColor="rgb(171 197 131)"
+                                                                    height="50%"
+                                                                    description="-Make" />
+                                                    <PullOutButton handleClick={(e) => props.updateStat(e, -1, player.id, PullOutSides.Left, StatTypes.FtAttempt)}
                                                                     backgroundColor="gray"
-                                                                    height="100%"
-                                                                    description="Miss" />
+                                                                    height="50%"
+                                                                    description="-Miss" />
                                                 </div>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-normal">{player.ftMakeAttemptPercent === 0 ? "-": `${player.ftMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.ftMakeAttemptPercent === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                                <p className="mb-0 fs-small">{player.ftMakeAttemptPercent === 0 || isNaN(player.ftMakeAttemptPercent) ? "-": `${player.ftMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.ftMakeAttemptPercent === 0 || isNaN(player.ftMakeAttemptPercent) ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
-                                                <p className="mb-0 fs-normal pe-none">{player.fgMake}/{player.fgAttempt}</p>
+                                                <p className="mb-0 fs-small pe-none">{player.fgMake}/{player.fgAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FgMake)}
                                                                     backgroundColor="rgb(171 197 131)"
-                                                                    height="100%"
+                                                                    height="50%"
                                                                     description="+1" />
+                                                    <PullOutButton handleClick={(e) => props.updateStat(e, -1, player.id, PullOutSides.Right, StatTypes.FgMake)}
+                                                                    backgroundColor="rgb(197 131 141)"
+                                                                    height="50%"
+                                                                    description="-1" />
                                                 </div>
                                             
                                                 <div className="pullout-action-left-panel">
@@ -161,14 +173,14 @@ const StatSheet = (props) => {
                                                 </div>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-normal">{player.fgMakeAttemptPercent === 0 ? "-": `${player.fgMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.fgMakeAttemptPercent === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                                <p className="mb-0 fs-small">{player.fgMakeAttemptPercent === 0 ? "-": `${player.fgMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.fgMakeAttemptPercent === 0 ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
-                                                <p className="mb-0 fs-normal pe-none">{player.threePtMake}/{player.threePtAttempt}</p>
+                                                <p className="mb-0 fs-small pe-none">{player.threePtMake}/{player.threePtAttempt}</p>
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.ThreePtMake)}
                                                                     backgroundColor="rgb(171 197 131)"
@@ -184,17 +196,17 @@ const StatSheet = (props) => {
                                                 </div>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-normal">{player.threePtMakeAttemptPercent === 0 ? "-": `${player.threePtMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.threePtMakeAttemptPercent === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                                <p className="mb-0 fs-small">{player.threePtMakeAttemptPercent === 0 ? "-": `${player.threePtMakeAttemptPercent.toFixed(2)}`}<span className={`manrope-font ${player.threePtMakeAttemptPercent === 0 ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
                                     <td className="no-hover">
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pe-none" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
-                                                <p className="mb-0 fs-normal pe-none">{player.totalFgMake}/{player.totalFgAttempt}</p>
+                                                <p className="mb-0 fs-small pe-none">{player.totalFgMake}/{player.totalFgAttempt}</p>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-normal">{player.totalFgMakeAttemptPercent === 0 ? "-": `${player.totalFgMakeAttemptPercent.toFixed(2)}%`}</p>
+                                                <p className="mb-0 fs-small">{player.totalFgMakeAttemptPercent === 0 ? "-": `${player.totalFgMakeAttemptPercent.toFixed(2)}%`}</p>
                                             </div>
                                         </div>
                                     </td>

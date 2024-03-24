@@ -26,20 +26,17 @@ td:hover {
 
 td.no-hover:hover {
     background-color: transparent;
-    color: white;
 }
 
 tr {
     // border-bottom: 1px solid gray;
     height: g.$table-row-height;
-}
-
-tr:nth-child(even) {
     background-color: #b5c7b9;
-}
+    transition: background-color 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
 
-tr:nth-child(odd) {
-    background-color: white;
+    &.activePlayer {
+        background-color: white;
+    }
 }
 
 thead>tr {
@@ -47,7 +44,18 @@ thead>tr {
     color: white;
 }
 
-table>tbody>tr:hover {
-    background-color: g.$color-secondary!important;
-    color: white;
+table>tbody>tr>th:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+table>tbody>tr>th.no-hover:hover {
+    background-color: transparent;
+}
+
+table>tbody>tr.activePlayer:hover {
+    // background-color: g.$color-secondary!important;
+    // color: white;
+    border-bottom-width: 1px;
+    border-bottom-color: g.$color-secondary!important;
+    border-bottom-style: solid;
 }

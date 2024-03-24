@@ -6,16 +6,7 @@ import { setDefaultProperties, updateStat } from "./repository/player-repository
 
 class App extends React.Component {
   state = {
-    players: []//staticData
-  }
-
-  updateStat = (statPt, id, statType) => {
-    let players = [...this.state.players];
-    let player = players.find(p => p.id === id);
-
-    updateStat(player, statPt, statType);
-
-    this.setState({players});
+    players: staticData
   }
 
   addPlayer = (player) => {
@@ -27,6 +18,24 @@ class App extends React.Component {
     this.setState({players}, animateEnter);
   }
 
+  toggleActivePlayer = (id) => {
+    let players = [...this.state.players];
+    let player = players.find(p => p.id === id);
+
+    player.isActive = !player.isActive;
+
+    this.setState({players});
+  }
+
+  updateStat = (statPt, id, statType) => {
+    let players = [...this.state.players];
+    let player = players.find(p => p.id === id);
+
+    updateStat(player, statPt, statType);
+
+    this.setState({players});
+  }
+
   render () {
       return (
         <>
@@ -34,6 +43,7 @@ class App extends React.Component {
           <Game players={this.state.players}
                 updateStat={this.updateStat}
                 addPlayer={this.addPlayer}
+                toggleActivePlayer={this.toggleActivePlayer}
                 />
         </>
       )

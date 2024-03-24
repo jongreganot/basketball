@@ -6,7 +6,7 @@ const JerseyNumberInput = (props) => {
                 id={`jerseyNumber${props.team}`}
                 className="form-control fs-normal registration-input slide-right" 
                 onKeyDown={(e) => props.submit(e, props.team)} 
-                placeholder="Jersey Number" 
+                placeholder="Jersey #" 
                 onChange={(e) => props.checkJerseyNumber(e, props.team)}></input>
     )
 };
