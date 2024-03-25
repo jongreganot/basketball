@@ -7,11 +7,12 @@ import { animateEnter, animateEnterNext } from "../behaviors/animation.js";
 import JerseyNumberInput from "../components/JerseyNumberInput.jsx";
 import NameInput from "../components/NameInput.jsx";
 import Scoreboard from "../components/Scoreboard.jsx";
-import { disableDefaultSpaceBarBehavior } from "../behaviors/interactions.js";
+import { disableDefaultSpaceBarBehavior, registerHotkeyEvents } from "../behaviors/interactions.js";
 import Controls from "../components/Controls.jsx";
-import { registerPlayBtnEventListener } from "../behaviors/play-button.js";
+import { registerTimerEventListener } from "../behaviors/play-button.js";
 import sound from "../audio/buzzer.mp3";
 import { clearTemporaryMargins } from "../behaviors/temporary-margins.js";
+import { wait } from "../behaviors/utilities.js";
 
 class Game extends React.Component {
     gameclockTimerInterval = null;
@@ -44,7 +45,6 @@ class Game extends React.Component {
     componentDidMount() {
         animateEnter();
         this.setDefaultFocus();
-        registerPlayBtnEventListener(this.toggleTimer, this.resetShotclockTimer, this.setShotClock14);
     }
 
     updateStat = (e, statPt, id, pullOutSide, statType) => {
@@ -70,6 +70,8 @@ class Game extends React.Component {
             animateEnterNext("slide-right-game-start");
             disableDefaultSpaceBarBehavior();
             clearTemporaryMargins();
+            registerHotkeyEvents();
+            registerTimerEventListener(this.toggleTimer, this.resetShotclockTimer, this.setShotClock14);
         });
     }
 
@@ -281,6 +283,7 @@ class Game extends React.Component {
                                             updateStat={this.updateStat}
                                             closePanels={this.closePanels}
                                             toggleActivePlayer={this.props.toggleActivePlayer}
+                                            changeSelected={this.props.changeSelected}
                                             />
                             </div>
                         </div>
@@ -311,6 +314,7 @@ class Game extends React.Component {
                                             updateStat={this.updateStat}
                                             closePanels={this.closePanels}
                                             toggleActivePlayer={this.props.toggleActivePlayer}
+                                            changeSelected={this.props.changeSelected}
                                             />
                             </div>
                         </div>

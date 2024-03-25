@@ -1,15 +1,15 @@
 import $ from "jquery";
 
-export const registerPlayBtnEventListener = (toggleTimer, resetShotclockTimer, setShotClock14) => {
+export const registerTimerEventListener = (toggleTimer, resetShotclockTimer, setShotClock14) => {
     $(document).on("keyup", (e) => {
         if (e.code === "Space") {
             toggleTimer();
             removeHover("control-button-container.play");
         }
-        else if (e.code === "KeyR") {
-            resetShotclockTimer();
-            removeHover("control-button-container.reset-24");
-        }
+        // else if (e.code === "KeyR") {
+        //     resetShotclockTimer();
+        //     removeHover("control-button-container.reset-24");
+        // }
         else if (e.code === "KeyY") {
             setShotClock14();
             removeHover("control-button-container.reset-14");

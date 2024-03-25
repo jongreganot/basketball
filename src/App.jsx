@@ -24,6 +24,21 @@ class App extends React.Component {
 
     player.isActive = !player.isActive;
 
+    if (player.selected)
+      player.selected = player.isActive;
+
+    this.setState({players});
+  }
+
+  changeSelected = (id) => {
+    let players = [...this.state.players];
+    let player = players.find(p => p.id === id);
+    let currentSelectedPlayer = players.find(p => p.selected);
+
+    if (currentSelectedPlayer)
+      currentSelectedPlayer.selected = false;
+    player.selected = true;
+
     this.setState({players});
   }
 
@@ -44,6 +59,7 @@ class App extends React.Component {
                 updateStat={this.updateStat}
                 addPlayer={this.addPlayer}
                 toggleActivePlayer={this.toggleActivePlayer}
+                changeSelected={this.changeSelected}
                 />
         </>
       )
