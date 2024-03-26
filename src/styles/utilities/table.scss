@@ -57,38 +57,6 @@ table>tbody>tr.activePlayer {
 
     &.selected {
         background-color: #d7d7d7;
-        border-bottom: 1px solid g.$color-secondary!important;
+        border-bottom: 2px solid orange!important;
     }
 }
-
-// table>tbody>tr.activePlayer:after {
-//     display: block;
-//     content: '';
-//     border-bottom: solid 1px g.$color-secondary!important;
-//     transform: scaleX(0);  
-//     transition: transform 250ms ease-in-out;
-// }
-
-// table>tbody>tr.activePlayer:hover::after {
-//     transform: scaleX(1);
-// }
-
-// table>tbody>tr.activePlayer {
-//     // &:hover {
-//     //     border-bottom-width: 1px;
-//     //     border-bottom-color: g.$color-secondary!important;
-//     //     border-bottom-style: solid;
-//     // }
-
-//     &:after {
-//         display:block;
-//         content: '';
-//         border-bottom: solid 1px g.$color-secondary!important;
-//         transform: scaleX(0);  
-//         transition: transform 250ms ease-in-out;
-//     }
-
-//     &:hover::after {
-//         transform: scaleX(1);
-//     }
-// }

@@ -46,9 +46,13 @@ class App extends React.Component {
     let player = players.find(p => p.id === id);
     let currentSelectedPlayer = players.find(p => p.selected);
 
-    if (currentSelectedPlayer)
-      currentSelectedPlayer.selected = false;
-    player.selected = true;
+    if (currentSelectedPlayer === player)
+      player.selected = !currentSelectedPlayer.selected;
+    else {
+      if (currentSelectedPlayer)
+        currentSelectedPlayer.selected = false;
+      player.selected = true;
+    }
 
     this.setState({players});
   }
