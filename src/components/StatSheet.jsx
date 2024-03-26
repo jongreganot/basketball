@@ -74,7 +74,7 @@ const StatSheet = (props) => {
                             return (
                                 <tr key={`row-${i}`} className={`slide-right ${player.isActive ? "activePlayer": ""} ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"} ${player.selected ? "selected": ""}`}>
                                     <th scope="row" className={`cursor-pointer ${props.gameStarted ? "pe-auto": "pe-none"}`} onDoubleClick={() => props.toggleActivePlayer(player.id)}><p className="mb-0 text-center fs-small fw-bold">{player.number}</p></th>
-                                    <th style={{width: "68px"}} className={`cursor-pointer ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"}`} onClick={() => props.changeSelected(player.id)}><p className="mb-0 fs-small pe-none">{player.name}</p></th>
+                                    <th style={{width: "70px", maxWidth: "70px"}} className={`cursor-pointer ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"}`} onClick={() => props.changeSelected(player.id)}><p className="mb-0 fs-small text-break pe-none">{player.name}</p></th>
                                     <td className="td-with-actions cursor-pointer" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                         <div className="content-center">
                                             <p className="mb-0 text-center fs-small">{player.pts}</p>

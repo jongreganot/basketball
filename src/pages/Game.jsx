@@ -115,7 +115,8 @@ class Game extends React.Component {
     checkJerseyNumber = (e, team) => {
         let number = e.target.value;
 
-        let jerseyNumberElement = $(`#jerseyNumber${team}`)[0];
+        let jerseyInputId = !this.state.gameStarted ? `#jerseyNumber${team}`: `#jerseyNumberIngame${team}`
+        let jerseyNumberElement = $(jerseyInputId)[0];
         if (number === "" || isNaN(number)) {
             $(jerseyNumberElement).addClass("error-input");
         }
@@ -126,8 +127,10 @@ class Game extends React.Component {
 
     submit = (e, team) => {
         if (e.code === "Enter" || e.code === "NumpadEnter") {
-            let jerseyNumberElement = $(`#jerseyNumber${team}`)[0];
-            let lastNameElement = $(`#lastName${team}`)[0];
+            let jerseyInputId = !this.state.gameStarted ? `#jerseyNumber${team}`: `#jerseyNumberIngame${team}`
+            let lastNameId = !this.state.gameStarted ? `#lastName${team}`: `#lastNameIngame${team}`
+            let jerseyNumberElement = $(jerseyInputId)[0];
+            let lastNameElement = $(lastNameId)[0];
 
             if (this.isInputValid(jerseyNumberElement, lastNameElement)) {
                 this.props.addPlayer(this.getPlayer(team));
@@ -137,8 +140,10 @@ class Game extends React.Component {
     }
 
     clearInput = (team) => {
-        let jerseyNumberElement = $(`#jerseyNumber${team}`)[0];
-        let lastNameElement = $(`#lastName${team}`)[0];
+        let jerseyInputId = !this.state.gameStarted ? `#jerseyNumber${team}`: `#jerseyNumberIngame${team}`
+        let lastNameId = !this.state.gameStarted ? `#lastName${team}`: `#lastNameIngame${team}`
+        let jerseyNumberElement = $(jerseyInputId)[0];
+        let lastNameElement = $(lastNameId)[0];
 
         jerseyNumberElement.value = "";
         lastNameElement.value = "";
@@ -147,8 +152,10 @@ class Game extends React.Component {
 
     getPlayer = (team) => {
         let id = this.props.players.length > 0 ? Math.max(...this.props.players.map(p => p.id)) + 1: 0;
-        let jerseyNumberElement = $(`#jerseyNumber${team}`)[0];
-        let lastNameElement = $(`#lastName${team}`)[0];
+        let jerseyInputId = !this.state.gameStarted ? `#jerseyNumber${team}`: `#jerseyNumberIngame${team}`
+        let lastNameId = !this.state.gameStarted ? `#lastName${team}`: `#lastNameIngame${team}`
+        let jerseyNumberElement = $(jerseyInputId)[0];
+        let lastNameElement = $(lastNameId)[0];
         let player = {
             id: id,
             number: jerseyNumberElement.value,
@@ -273,11 +280,13 @@ class Game extends React.Component {
                                         <JerseyNumberInput team={1}
                                                             submit={this.submit}
                                                             checkJerseyNumber={this.checkJerseyNumber}
+                                                            gameStarted={false}
                                         />
                                     </div>
                                     <div className="col-3">
                                         <NameInput team={1}
                                                         submit={this.submit}
+                                                        gameStarted={false}
                                         />
                                     </div>
                                 </div>
@@ -290,6 +299,21 @@ class Game extends React.Component {
                                             toggleActivePlayer={this.props.toggleActivePlayer}
                                             changeSelected={this.props.changeSelected}
                                             />
+                                <div className={`${this.state.gameStarted ? "d-flex": "d-none"} flex-row gap-3 mt-4 col-12`}>
+                                    <div className="col-2">
+                                        <JerseyNumberInput team={1}
+                                                            submit={this.submit}
+                                                            checkJerseyNumber={this.checkJerseyNumber}
+                                                            gameStarted={true}
+                                        />
+                                    </div>
+                                    <div className="col-3">
+                                        <NameInput team={1}
+                                                    submit={this.submit}
+                                                    gameStarted={true}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -304,11 +328,13 @@ class Game extends React.Component {
                                         <JerseyNumberInput team={2}
                                                             submit={this.submit}
                                                             checkJerseyNumber={this.checkJerseyNumber}
+                                                            gameStarted={false}
                                         />
                                     </div>
                                     <div className="col-3">
                                         <NameInput team={2}
                                                         submit={this.submit}
+                                                        gameStarted={false}
                                         />
                                     </div>
                                 </div>
@@ -321,6 +347,21 @@ class Game extends React.Component {
                                             toggleActivePlayer={this.props.toggleActivePlayer}
                                             changeSelected={this.props.changeSelected}
                                             />
+                                <div className={`${this.state.gameStarted ? "d-flex": "d-none"} flex-row gap-3 mt-4 col-12`}>
+                                    <div className="col-2">
+                                        <JerseyNumberInput team={2}
+                                                            submit={this.submit}
+                                                            checkJerseyNumber={this.checkJerseyNumber}
+                                                            gameStarted={true}
+                                        />
+                                    </div>
+                                    <div className="col-3">
+                                        <NameInput team={2}
+                                                        submit={this.submit}
+                                                        gameStarted={true}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -526,7 +526,7 @@ export const staticData = [
     {
       id: 26,
       number: 6,
-      name: "Thompson",
+      name: "Thompsonasdasd",
       isActive: false,
       selected: false,
       pts: 0,
