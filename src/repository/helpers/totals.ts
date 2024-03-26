@@ -41,10 +41,10 @@ export const getTotal = (players, statType) => {
             sum = totalFgMake / totalFgAttempt * 100;
             break;
         case StatTypes.ThreePtMake:
-            sum = players.map(player => player.fgMake).reduce((prev, next) => prev + next)
+            sum = players.map(player => player.threePtMake).reduce((prev, next) => prev + next)
             break;
         case StatTypes.ThreePtAttempt:
-            sum = players.map(player => player.fgAttempt).reduce((prev, next) => prev + next)
+            sum = players.map(player => player.threePtAttempt).reduce((prev, next) => prev + next)
             break;
         case StatTypes.ThreePtMakeAttemptPercent:
             let totalThreeMake = players.map(player => player.threePtMake).reduce((prev, next) => prev + next);

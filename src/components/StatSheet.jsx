@@ -148,6 +148,11 @@ const StatSheet = (props) => {
                                                                 description="+1"
                                                                 isPercentage={true}
                                                                 pullOutId={`pts1${player.selected ? "-selected": ""}`} />
+                                                <FlashPullOut backgroundColor="#282a28"
+                                                                height="100%"
+                                                                description="Miss"
+                                                                isPercentage={true}
+                                                                pullOutId={`${Object.entries(StatTypes)[StatTypes.FtAttempt][0].toLowerCase()}${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FtMake)}
                                                                     backgroundColor="rgb(4 44 67)"
@@ -184,6 +189,11 @@ const StatSheet = (props) => {
                                                                 description="+1"
                                                                 isPercentage={true}
                                                                 pullOutId={`pts2${player.selected ? "-selected": ""}`} />
+                                                <FlashPullOut backgroundColor="#282a28"
+                                                                height="100%"
+                                                                description="Miss"
+                                                                isPercentage={true}
+                                                                pullOutId={`${Object.entries(StatTypes)[StatTypes.FgAttempt][0].toLowerCase()}${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FgMake)}
                                                                     backgroundColor="rgb(4 44 67)"
@@ -220,6 +230,11 @@ const StatSheet = (props) => {
                                                                 description="+1"
                                                                 isPercentage={true}
                                                                 pullOutId={`pts3${player.selected ? "-selected": ""}`} />
+                                                <FlashPullOut backgroundColor="#282a28"
+                                                                height="100%"
+                                                                description="Miss"
+                                                                isPercentage={true}
+                                                                pullOutId={`${Object.entries(StatTypes)[StatTypes.ThreePtAttempt][0].toLowerCase()}${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.ThreePtMake)}
                                                                     backgroundColor="rgb(4 44 67)"

@@ -49,6 +49,19 @@ export const registerHotkeyEvents = (addStat) => {
             flashAddedStats(Object.entries(StatTypes)[StatTypes.Fls][0]);
             statType = StatTypes.Fls;
         }
+        
+        else if (e.code === "KeyZ") {
+            flashAddedStats(Object.entries(StatTypes)[StatTypes.FtAttempt][0]);
+            statType = StatTypes.FtAttempt;
+        }
+        else if (e.code === "KeyX") {
+            flashAddedStats(Object.entries(StatTypes)[StatTypes.FgAttempt][0]);
+            statType = StatTypes.FgAttempt;
+        }
+        else if (e.code === "KeyC") {
+            flashAddedStats(Object.entries(StatTypes)[StatTypes.ThreePtAttempt][0]);
+            statType = StatTypes.ThreePtAttempt;
+        }
 
         addStat(statType);
     });
