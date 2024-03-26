@@ -91,9 +91,9 @@ class Game extends React.Component {
         return teamScore;
     }
 
-    handleIngameRegistration = () => {
-        let elements = document.querySelectorAll(".pullout-registration.team-one");
-        let registrationBtn = document.querySelector(".pullout-registration-button");
+    handleIngameRegistration = (team) => {
+        let elements = document.querySelectorAll(`.pullout-registration.team-${team}`);
+        let registrationBtn = document.querySelector(`.pullout-registration-button.team-${team}`);
 
         $(registrationBtn).hasClass("active") ? $(registrationBtn).removeClass("active"): $(registrationBtn).addClass("active");
         elements.forEach(element => {
@@ -308,28 +308,11 @@ class Game extends React.Component {
                                             changeSelected={this.props.changeSelected}
                                             />
                                 <div className={`${this.state.gameStarted ? "d-flex": "d-none"} align-items-center flex-row gap-3 mt-4 col-12`}>
-                                    <svg onClick={this.handleIngameRegistration} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill pullout-registration-button cursor-pointer" viewBox="0 0 16 16">
+                                    <svg onClick={() => this.handleIngameRegistration(1)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill pullout-registration-button team-1 cursor-pointer slide-right-game-start" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                                     </svg>
-                                    {/* <div className="hide-objects col-2">
-                                        <div className="pullout-registration team-one">
-                                            <JerseyNumberInput team={1}
-                                                                submit={this.submit}
-                                                                checkJerseyNumber={this.checkJerseyNumber}
-                                                                gameStarted={true}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="hide-objects col-3">
-                                        <div className="pullout-registration team-one">
-                                            <NameInput team={1}
-                                                        submit={this.submit}
-                                                        gameStarted={true}
-                                            />
-                                        </div>
-                                    </div> */}
                                     <div className="hide-objects">
-                                        <div className="pullout-registration team-one d-flex flex-row gap-3">
+                                        <div className="pullout-registration team-1 d-flex flex-row gap-3">
                                             <JerseyNumberInput team={1}
                                                                 submit={this.submit}
                                                                 checkJerseyNumber={this.checkJerseyNumber}
@@ -349,19 +332,17 @@ class Game extends React.Component {
 
 
                         <div className="col-6">
-                            <div className="d-flex flex-column align-items-center">
+                            <div className="d-flex flex-column">
                                 {/* <Scoreboard getTeamScore={() => this.getTeamScore(2)}
                                             gameStarted={this.state.gameStarted} 
                                 /> */}
-                                <div className={`${this.state.gameStarted ? "d-none": "d-flex"} flex-row gap-3 mb-4 col-12`}>
-                                    <div className="col-2">
-                                        <JerseyNumberInput team={2}
-                                                            submit={this.submit}
-                                                            checkJerseyNumber={this.checkJerseyNumber}
-                                                            gameStarted={false}
-                                        />
-                                    </div>
-                                    <div className="col-3">
+                                <div className={`${this.state.gameStarted ? "d-none": "d-flex"} col-5 flex-row gap-3 mb-4`}>
+                                    <JerseyNumberInput team={2}
+                                                        submit={this.submit}
+                                                        checkJerseyNumber={this.checkJerseyNumber}
+                                                        gameStarted={false}
+                                    />
+                                    <div className="col-5">
                                         <NameInput team={2}
                                                         submit={this.submit}
                                                         gameStarted={false}
@@ -378,22 +359,22 @@ class Game extends React.Component {
                                             changeSelected={this.props.changeSelected}
                                             />
                                 <div className={`${this.state.gameStarted ? "d-flex": "d-none"} flex-row align-items-center gap-3 mt-4 col-12`}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill cursor-pointer" viewBox="0 0 16 16">
+                                <svg onClick={() => this.handleIngameRegistration(2)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill pullout-registration-button team-2 cursor-pointer slide-right-game-start" viewBox="0 0 16 16">
                                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                                     </svg>
-                                    <div>
-                                        <div className="col-2">
+                                    <div className="hide-objects">
+                                        <div className="pullout-registration team-2 d-flex flex-row gap-3">
                                             <JerseyNumberInput team={2}
                                                                 submit={this.submit}
                                                                 checkJerseyNumber={this.checkJerseyNumber}
                                                                 gameStarted={true}
                                             />
-                                        </div>
-                                        <div className="col-3">
-                                            <NameInput team={2}
+                                            <div className="col-5">
+                                                <NameInput team={2}
                                                             submit={this.submit}
                                                             gameStarted={true}
-                                            />
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
