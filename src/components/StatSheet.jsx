@@ -4,10 +4,9 @@ import SimplePullOutCell from "./SimplePullOutCell";
 import { PullOutSides } from "../constants/pullout-sides.ts";
 import { StatTypes } from "../constants/stat-type.ts";
 import FlashPullOut from "./FlashPullOut.jsx";
+import { getTotal } from "../repository/helpers/totals.ts";
 
 const StatSheet = (props) => {
-    const isInvalidPercentage = (number) => number === 0 || isNaN(number) || !isFinite(number);
-
     return (
         <div className={`w-100 ${props.gameStarted ? "pe-auto": "pe-none"}`}>
             <table onClick={props.closePanels} className="slide-right-game-start">
@@ -172,7 +171,7 @@ const StatSheet = (props) => {
                                                 </div>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-small">{isInvalidPercentage(player.ftMakeAttemptPercent) ? "-": `${player.ftMakeAttemptPercent.toFixed(1)}`}<span className={`manrope-font ${isInvalidPercentage(player.ftMakeAttemptPercent) ? "d-none": "d-inline"}`}>%</span></p>
+                                                <p className="mb-0 fs-small">{player.ftAttempt === 0 ? "-": `${player.ftMakeAttemptPercent.toFixed(1)}`}<span className={`manrope-font ${player.ftAttempt === 0 ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
@@ -208,7 +207,7 @@ const StatSheet = (props) => {
                                                 </div>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-small">{isInvalidPercentage(player.fgMakeAttemptPercent) ? "-": `${player.fgMakeAttemptPercent.toFixed(1)}`}<span className={`manrope-font ${isInvalidPercentage(player.fgMakeAttemptPercent) ? "d-none": "d-inline"}`}>%</span></p>
+                                                <p className="mb-0 fs-small">{player.fgAttempt === 0 ? "-": `${player.fgMakeAttemptPercent.toFixed(1)}`}<span className={`manrope-font ${player.fgAttempt === 0 ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
@@ -254,7 +253,7 @@ const StatSheet = (props) => {
                                                 <p className="mb-0 fs-small pe-none">{player.totalFgMake}/{player.totalFgAttempt}</p>
                                             </div>
                                             <div className="content-center col-6">
-                                                <p className="mb-0 fs-small">{isInvalidPercentage(player.totalFgMakeAttemptPercent) === 0 ? "-": `${player.totalFgMakeAttemptPercent.toFixed(1)}%`}</p>
+                                                <p className="mb-0 fs-small">{player.totalFgAttempt === 0 ? "-": `${player.totalFgMakeAttemptPercent.toFixed(1)}`}<span className={`manrope-font ${player.totalFgAttempt === 0 ? "d-none": "d-inline"}`}>%</span></p>
                                             </div>
                                         </div>
                                     </td>
@@ -278,6 +277,89 @@ const StatSheet = (props) => {
                             )
                         })
                     }
+                    <tr className={`total pe-none ${props.gameStarted ? "": "d-none"}`}>
+                        <td colSpan={2}>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">TOTAL</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Pts)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Rebs)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Ast)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Stl)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center py-3">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Blk)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="d-flex flex-row">
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.FtMake)}/{getTotal(props.players, StatTypes.FtAttempt)}</p>
+                                </div>
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.FtAttempt) === 0 ? "-": `${getTotal(props.players, StatTypes.FtMakeAttemptPercent).toFixed(1)}`}<span className={`manrope-font ${getTotal(props.players, StatTypes.FtAttempt) === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="d-flex flex-row">
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.FgMake)}/{getTotal(props.players, StatTypes.FgAttempt)}</p>
+                                </div>
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.FgAttempt) === 0 ? "-": `${getTotal(props.players, StatTypes.FgMakeAttemptPercent).toFixed(1)}`}<span className={`manrope-font ${getTotal(props.players, StatTypes.FgAttempt) === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="d-flex flex-row">
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.ThreePtMake)}/{getTotal(props.players, StatTypes.ThreePtAttempt)}</p>
+                                </div>
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.ThreePtAttempt) === 0 ? "-": `${getTotal(props.players, StatTypes.ThreePtMakeAttemptPercent).toFixed(1)}`}<span className={`manrope-font ${getTotal(props.players, StatTypes.ThreePtAttempt) === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                        <div className="d-flex flex-row">
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.TotalFgMake)}/{getTotal(props.players, StatTypes.TotalFgAttempt)}</p>
+                                </div>
+                                <div className="content-center py-3 col-6">
+                                    <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.TotalFgAttempt) === 0 ? "-": `${getTotal(props.players, StatTypes.TotalFgMakeAttemptPercent).toFixed(1)}`}<span className={`manrope-font ${getTotal(props.players, StatTypes.TotalFgAttempt) === 0 ? "d-none": "d-inline"}`}>%</span></p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Tov)}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div className="content-center">
+                                <p className="mb-0 fs-normal">{getTotal(props.players, StatTypes.Fls)}</p>
+                            </div>
+                        </td>
+                        
+                    </tr>
                 </tbody>
             </table>
         </div>

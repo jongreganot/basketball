@@ -1,0 +1,1 @@
+export const isInvalidPercentage = (number) => number === 0 || isNaN(number) || !isFinite(number);

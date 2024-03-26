@@ -280,9 +280,6 @@ class Game extends React.Component {
                     <div className="d-flex flex-row justify-content-center gap-3 px-4 mb-4 col-12">
                         <div className="col-6">
                             <div className="d-flex flex-column">
-                                {/* <Scoreboard getTeamScore={() => this.getTeamScore(1)}
-                                            gameStarted={this.state.gameStarted}
-                                /> */}
                                 <div className={`${this.state.gameStarted ? "d-none": "d-flex"} col-5 flex-row gap-3 mb-4`}>
                                     <JerseyNumberInput team={1}
                                                         submit={this.submit}
@@ -296,8 +293,6 @@ class Game extends React.Component {
                                         />
                                     </div>
                                 </div>
-                                    {/* <div className="col-3">
-                                    </div> */}
                                 <StatSheet players={this.props.players}
                                             gameStarted={this.state.gameStarted}
                                             team={1}
@@ -333,9 +328,6 @@ class Game extends React.Component {
 
                         <div className="col-6">
                             <div className="d-flex flex-column">
-                                {/* <Scoreboard getTeamScore={() => this.getTeamScore(2)}
-                                            gameStarted={this.state.gameStarted} 
-                                /> */}
                                 <div className={`${this.state.gameStarted ? "d-none": "d-flex"} col-5 flex-row gap-3 mb-4`}>
                                     <JerseyNumberInput team={2}
                                                         submit={this.submit}
