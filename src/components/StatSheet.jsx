@@ -73,7 +73,7 @@ const StatSheet = (props) => {
                         props.players.sort((a, b) => b["isActive"] - a["isActive"] || a["number"] - b["number"]).filter(player => player.team === props.team).map((player, i) => {
                             return (
                                 <tr key={`row-${i}`} className={`slide-right ${player.isActive ? "activePlayer": ""} ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"} ${player.selected ? "selected": ""}`}>
-                                    <th scope="row" className={`cursor-pointer ${props.gameStarted ? "pe-auto": "pe-none"}`} onClick={() => props.toggleActivePlayer(player.id)}><p className="mb-0 text-center fs-small fw-bold">{player.number}</p></th>
+                                    <th scope="row" className={`cursor-pointer ${props.gameStarted ? "pe-auto": "pe-none"}`} onDoubleClick={() => props.toggleActivePlayer(player.id)}><p className="mb-0 text-center fs-small fw-bold">{player.number}</p></th>
                                     <th className={`cursor-pointer ${player.isActive && props.gameStarted ? "pe-auto": "pe-none"}`} onClick={() => props.changeSelected(player.id)}><p className="mb-0 fs-small pe-none">{player.name}</p></th>
                                     <td className="td-with-actions cursor-pointer" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                         <div className="content-center">
@@ -81,15 +81,15 @@ const StatSheet = (props) => {
                                             <FlashPullOut backgroundColor="rgb(4 44 67)"
                                                             height="100%"
                                                             description="+1"
-                                                            pullOutId={`pts1${player.selected ? "Selected": ""}`} />
+                                                            pullOutId={`pts1${player.selected ? "-selected": ""}`} />
                                             <FlashPullOut backgroundColor="rgb(4 44 67)"
                                                             height="100%"
                                                             description="+2"
-                                                            pullOutId={`pts2${player.selected ? "Selected": ""}`} />
+                                                            pullOutId={`pts2${player.selected ? "-selected": ""}`} />
                                             <FlashPullOut backgroundColor="rgb(4 44 67)"
                                                             height="100%"
                                                             description="+3"
-                                                            pullOutId={`pts3${player.selected ? "Selected": ""}`} />
+                                                            pullOutId={`pts3${player.selected ? "-selected": ""}`} />
                                             <div className="pullout-action-right-panel">
                                                 
                                                 {/* <PullOutButton handleClick={(e) => props.updateStat(e, 3, player.id, PullOutSides.Right, StatTypes.Pts)}
@@ -144,6 +144,11 @@ const StatSheet = (props) => {
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-small pe-none">{player.ftMake}/{player.ftAttempt}</p>
+                                                <FlashPullOut backgroundColor="rgb(4 44 67)"
+                                                                height="100%"
+                                                                description="+1"
+                                                                isPercentage={true}
+                                                                pullOutId={`pts1${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FtMake)}
                                                                     backgroundColor="rgb(4 44 67)"
@@ -175,6 +180,11 @@ const StatSheet = (props) => {
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-small pe-none">{player.fgMake}/{player.fgAttempt}</p>
+                                                <FlashPullOut backgroundColor="rgb(4 44 67)"
+                                                                height="100%"
+                                                                description="+1"
+                                                                isPercentage={true}
+                                                                pullOutId={`pts2${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.FgMake)}
                                                                     backgroundColor="rgb(4 44 67)"
@@ -206,6 +216,11 @@ const StatSheet = (props) => {
                                         <div className="d-flex flex-row">
                                             <div className="content-center col-6 pullout-container" onClick={(e) => props.toggleActions(e)} onContextMenu={(e) => props.toggleActions(e)}>
                                                 <p className="mb-0 fs-small pe-none">{player.threePtMake}/{player.threePtAttempt}</p>
+                                                <FlashPullOut backgroundColor="rgb(4 44 67)"
+                                                                height="100%"
+                                                                description="+1"
+                                                                isPercentage={true}
+                                                                pullOutId={`pts3${player.selected ? "-selected": ""}`} />
                                                 <div className="pullout-action-right-panel">
                                                     <PullOutButton handleClick={(e) => props.updateStat(e, 1, player.id, PullOutSides.Right, StatTypes.ThreePtMake)}
                                                                     backgroundColor="rgb(4 44 67)"

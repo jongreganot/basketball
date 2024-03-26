@@ -9,7 +9,7 @@ const SimplePullOutCell = (props) => {
             <FlashPullOut backgroundColor="rgb(4 44 67)"
                                                         height="100%"
                                                         description="+1"
-                                                        pullOutId={`${props.statType}${props.player && props.player.selected ? "Selected": ""}`} />
+                                                        pullOutId={`${props.statType.toLowerCase()}${props.player && props.player.selected ? "-selected": ""}`} />
             <div className="pullout-action-right-panel">
                 <PullOutButton handleClick={(e) => props.handleRightPanelClick(e)}
                                 backgroundColor="rgb(4 44 67)"

@@ -13,6 +13,7 @@ import { registerTimerEventListener } from "../behaviors/play-button.js";
 import sound from "../audio/buzzer.mp3";
 import { clearTemporaryMargins } from "../behaviors/temporary-margins.js";
 import { wait } from "../behaviors/utilities.js";
+import { StatTypes } from "../constants/stat-type.ts";
 
 class Game extends React.Component {
     gameclockTimerInterval = null;
@@ -70,10 +71,14 @@ class Game extends React.Component {
             animateEnterNext("slide-right-game-start");
             disableDefaultSpaceBarBehavior();
             clearTemporaryMargins();
-            registerHotkeyEvents();
+            registerHotkeyEvents(this.props.addStat);
             registerTimerEventListener(this.toggleTimer, this.resetShotclockTimer, this.setShotClock14);
         });
     }
+
+    // addStat = (statType) => {
+    //     this.props.addStat(statType);
+    // }
 
     getPullOut = (pullOutSide, e) => pullOutSide === PullOutSides.Right ? e.target.closest(".pullout-action-right-panel"): e.target.closest(".pullout-action-left-panel");
 

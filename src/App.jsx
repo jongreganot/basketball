@@ -2,11 +2,22 @@ import React from "react"
 import Game from "./pages/Game.jsx";
 import { staticData } from "./constants/static-data.ts";
 import { animateEnter } from "./behaviors/animation.js";
-import { setDefaultProperties, updateStat } from "./repository/player-repository.ts";
+import { addStat, setDefaultProperties, updateStat } from "./repository/player-repository.ts";
 
 class App extends React.Component {
   state = {
     players: staticData
+  }
+
+  addStat = (statType) => {
+    let players = [...this.state.players];
+    let player = players.find(p => p.selected);
+
+    if (player) {
+      addStat(player, statType);
+    }
+
+    this.setState({players});
   }
 
   addPlayer = (player) => {
@@ -56,6 +67,7 @@ class App extends React.Component {
         <>
           <div className="mask"></div>
           <Game players={this.state.players}
+                addStat={this.addStat}
                 updateStat={this.updateStat}
                 addPlayer={this.addPlayer}
                 toggleActivePlayer={this.toggleActivePlayer}
