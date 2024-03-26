@@ -4,23 +4,15 @@ table {
     width: 100%;
     color: black;
     user-select: none;
-    // border: 1px solid gray;
 }
 
 th {
     padding: 8px;
 }
 
-// td {
-//     padding-left: 8px;
-//     padding-right: 8px;
-//     padding-top: 12px;
-//     padding-bottom: 12px;
-// }
-
 
 td:hover, table>tbody>tr>th:hover {
-    background-color: #b6cce0;
+    background-color: orange;
     color: black;
 }
 
@@ -29,7 +21,6 @@ td.no-hover:hover {
 }
 
 tr {
-    // border-bottom: 1px solid gray;
     height: g.$table-row-height;
     background-color: #aaaaaa;
     transition: background-color 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -55,6 +46,10 @@ table>tbody>tr.activePlayer {
     &.selected {
         background-color: #7fadd9;
         border-bottom: 2px solid orange!important;
+
+        & > td:hover, th:hover {
+            background-color: #b6cce0;
+        }
     }
 }
 
