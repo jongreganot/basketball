@@ -61,10 +61,10 @@ class App extends React.Component {
     let players = [...this.state.players];
     let player = players.find(p => p.selected);
 
-    if (player)
+    if (player) {
       player.selected = false;
-
       this.setState({players});
+    }
   }
 
   updateStat = (statPt, id, statType) => {

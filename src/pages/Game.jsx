@@ -92,6 +92,7 @@ class Game extends React.Component {
     }
 
     handleIngameRegistration = (team) => {
+        this.props.removeSelected();
         let elements = document.querySelectorAll(`.pullout-registration.team-${team}`);
         let registrationBtn = document.querySelector(`.pullout-registration-button.team-${team}`);
 
